@@ -11,4 +11,28 @@ describe('Intern', () => {
 
         expect(intern.getName()).toBe(name)
     });
+
+    it('should have an id', () => {
+        const intern = new Intern(name,id,email,school)
+
+        expect(intern.getId()).toBe(id)
+    });
+
+    it('should have an email', () => {
+        const intern = new Intern(name,id,email,school)
+
+        expect(intern.getEmail()).toBe(email)
+    });
+
+    it('should have a school', () => {
+        const intern = new Intern(name,id,email,school)
+
+        expect(intern.getSchool()).toBe(school)
+    });
+
+    it('should have role of Intern', () => {
+        const intern = new Intern(name,id,email,school)
+
+        expect(intern.getRole()).toBe('Intern')
+    });
 });
