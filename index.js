@@ -63,7 +63,7 @@ function init(){
                 break
             default:
                 console.log(template)
-                // writeToFile('index.html',data)
+                // writeToFile('./dist/Index.html',template)
         }
     })
 }
@@ -101,6 +101,25 @@ function addEngineer(){
     .then((data) => {
         let engineer = new Engineer(data.engineerName,data.engineerID,data.engineerEmail,data.engineerGithub)
         
+        let card = card.replace('name-here',engineer.getName())
+        card = card.replace('title-here',engineer.getRole())
+        card = card.replace('id-here',engineer.getId())
+        card = card.replace('email-here',engineer.getEmail())
+        card = card.replace('detail-here',engineer.getGithub())
+
+        template.replace('<!-- add-here -->',card)
+
+        switch(data.firstChoice){
+            case 'Add an Engineer':
+                addEngineer()
+                break
+            case 'Add an Intern':
+                addIntern()
+                break
+            default:
+                console.log(template)
+                // writeToFile('./dist/Index.html',template)
+        }
     })
 }
 
@@ -110,7 +129,7 @@ function addIntern(){
         {
             type: 'input',
             name: 'internName',
-            message: 'What is the Team Manager name?',
+            message: 'What is their name?',
         },
         {
             type: 'input',
@@ -123,6 +142,11 @@ function addIntern(){
             message: 'What is their email address?'
         },
         {
+            type: 'input',
+            name: 'internSchool',
+            message: 'What school are they in?'
+        },
+        {
             type: 'list',
             name: 'firstChoice',
             choices:['Add an intern','Add an Intern','Finish building the team'],
@@ -130,7 +154,27 @@ function addIntern(){
         },
     ])
     .then((data) => {
+        let intern = new Intern(data.internName,data.internID,data.internEmail,data.internSchool)
         
+        let card = card.replace('name-here',intern.getName())
+        card = card.replace('title-here',intern.getRole())
+        card = card.replace('id-here',intern.getId())
+        card = card.replace('email-here',intern.getEmail())
+        card = card.replace('detail-here',intern.getSchool())
+
+        template.replace('<!-- add-here -->',card)
+
+        switch(data.firstChoice){
+            case 'Add an Engineer':
+                addEngineer()
+                break
+            case 'Add an Intern':
+                addIntern()
+                break
+            default:
+                console.log(template)
+                // writeToFile('./dist/Index.html',template)
+        }
     })
 }
 
