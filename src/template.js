@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+let template = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,9 +14,27 @@
         </div>
     </nav>
     <body>
-    
-        
+    <div class="container">
+        <div class="row">
+            <div class="col s4">
+                <div class="card-panel teal">
+                <span class="white-text">
+                    name-here
+                    icon-here title-here
+                    <ul>
+                        <li>ID: id-here</li>
+                        <li>Email: email-here</li>
+                        <li>detail-here</li>
+                    </ul>
+                </span>
+                </div>
+            </div>
+            <!-- add-here -->
+        </div>
+    </div>        
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     </body>
-</html>
+</html>`
+
+module.exports = template

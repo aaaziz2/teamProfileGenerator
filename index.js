@@ -2,6 +2,13 @@ const inquirer = require('inquirer')
 const fs = require('fs')
 const internal = require('stream')
 
+const Manager = require('./lib/Manager')
+const Engineer = require('./lib/Engineer')
+const Intern = require('./lib/Intern')
+
+let template = require('./src/template')
+let card = require('./src/card')
+
 function writeToFile(fileName, data) {
     fs.writeFile(fileName, data, (err) =>
       err ? console.log(err) : console.log('Congrats on your completed Team Profile!'))
@@ -38,6 +45,15 @@ function init(){
         },
     ])
     .then((data) => {
+        let manager = new Manager(data.managerName,data.managerID,data.managerEmail,data.managerOfficeNum)
+        template = template.replace('name-here',manager.getName())
+        template = template.replace('title-here',manager.getRole())
+        template = template.replace('id-here',manager.getId())
+        template = template.replace('email-here',manager.getEmail())
+        template = template.replace('detail-here',`Office number: ${manager.officeNumber}`)
+
+        // console.log(template)
+
         switch(data.firstChoice){
             case 'Add an Engineer':
                 addEngineer()
@@ -46,7 +62,8 @@ function init(){
                 addIntern()
                 break
             default:
-                writeToFile('index.html',data)
+                console.log(template)
+                // writeToFile('index.html',data)
         }
     })
 }
@@ -57,7 +74,7 @@ function addEngineer(){
         {
             type: 'input',
             name: 'engineerName',
-            message: 'What is the Team Manager name?',
+            message: 'What is their name?',
         },
         {
             type: 'input',
@@ -70,6 +87,11 @@ function addEngineer(){
             message: 'What is their email address?'
         },
         {
+            type: 'input',
+            name: 'engineerGithub',
+            message: 'What is their github?'
+        },
+        {
             type: 'list',
             name: 'firstChoice',
             choices:['Add an Engineer','Add an Intern','Finish building the team'],
@@ -77,6 +99,7 @@ function addEngineer(){
         },
     ])
     .then((data) => {
+        let engineer = new Engineer(data.engineerName,data.engineerID,data.engineerEmail,data.engineerGithub)
         
     })
 }
