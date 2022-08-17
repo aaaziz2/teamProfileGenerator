@@ -1,5 +1,5 @@
 let card = `<div class="col s4">
-    <div class="card-panel teal">
+    <div class="card-panel blue">
     <span class="white-text">
         name-here
         <br> icon-here title-here
