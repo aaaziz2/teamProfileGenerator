@@ -47,6 +47,7 @@ function init(){
     .then((data) => {
         let manager = new Manager(data.managerName,data.managerID,data.managerEmail,data.managerOfficeNum)
         template = template.replace('name-here',manager.getName())
+        template = template.replace('icon-here',`<i class="fa-solid fa-user-tie"></i>`)
         template = template.replace('title-here',manager.getRole())
         template = template.replace('id-here',manager.getId())
         template = template.replace('email-here',manager.getEmail())
@@ -63,7 +64,7 @@ function init(){
                 break
             default:
                 console.log(template)
-                // writeToFile('./dist/Index.html',template)
+                writeToFile('./dist/Index.html',template)
         }
     })
 }
@@ -101,13 +102,16 @@ function addEngineer(){
     .then((data) => {
         let engineer = new Engineer(data.engineerName,data.engineerID,data.engineerEmail,data.engineerGithub)
         
-        let card = card.replace('name-here',engineer.getName())
-        card = card.replace('title-here',engineer.getRole())
-        card = card.replace('id-here',engineer.getId())
-        card = card.replace('email-here',engineer.getEmail())
-        card = card.replace('detail-here',engineer.getGithub())
+        let engCard = card.slice()
 
-        template.replace('<!-- add-here -->',card)
+        engCard = engCard.replace('name-here',engineer.getName())
+        engCard = engCard.replace('icon-here',`<i class="fa-solid fa-laptop-code"></i>`)
+        engCard = engCard.replace('title-here',engineer.getRole())
+        engCard = engCard.replace('id-here',engineer.getId())
+        engCard = engCard.replace('email-here',engineer.getEmail())
+        engCard = engCard.replace('detail-here',engineer.getGithub())
+
+        template = template.replace('<!-- add-here -->',engCard)
 
         switch(data.firstChoice){
             case 'Add an Engineer':
@@ -149,20 +153,22 @@ function addIntern(){
         {
             type: 'list',
             name: 'firstChoice',
-            choices:['Add an intern','Add an Intern','Finish building the team'],
+            choices:['Add an Engineer','Add an Intern','Finish building the team'],
             message:'What do you want to do:'
         },
     ])
     .then((data) => {
         let intern = new Intern(data.internName,data.internID,data.internEmail,data.internSchool)
         
-        let card = card.replace('name-here',intern.getName())
-        card = card.replace('title-here',intern.getRole())
-        card = card.replace('id-here',intern.getId())
-        card = card.replace('email-here',intern.getEmail())
-        card = card.replace('detail-here',intern.getSchool())
+        let internCard = card.slice()
 
-        template.replace('<!-- add-here -->',card)
+        internCard = internCard.replace('name-here',intern.getName())
+        internCard = internCard.replace('title-here',intern.getRole())
+        internCard = internCard.replace('id-here',intern.getId())
+        internCard = internCard.replace('email-here',intern.getEmail())
+        internCard = internCard.replace('detail-here',intern.getSchool())
+
+        template = template.replace('<!-- add-here -->',internCard)
 
         switch(data.firstChoice){
             case 'Add an Engineer':
