@@ -1,3 +1,4 @@
+// use to generate either a Engineer or Intern card
 let card = `<div class="col s4">
     <div class="card-panel blue">
     <span class="white-text">
