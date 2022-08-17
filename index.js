@@ -1,6 +1,5 @@
 const inquirer = require('inquirer')
 const fs = require('fs')
-const internal = require('stream')
 
 const Manager = require('./lib/Manager')
 const Engineer = require('./lib/Engineer')
@@ -122,7 +121,7 @@ function addEngineer(){
                 break
             default:
                 console.log(template)
-                // writeToFile('./dist/Index.html',template)
+                writeToFile('./dist/Index.html',template)
         }
     })
 }
@@ -163,6 +162,7 @@ function addIntern(){
         let internCard = card.slice()
 
         internCard = internCard.replace('name-here',intern.getName())
+        internCard = internCard.replace('icon-here',`<i class="fa-solid fa-user-graduate"></i>`)
         internCard = internCard.replace('title-here',intern.getRole())
         internCard = internCard.replace('id-here',intern.getId())
         internCard = internCard.replace('email-here',intern.getEmail())
@@ -179,7 +179,7 @@ function addIntern(){
                 break
             default:
                 console.log(template)
-                // writeToFile('./dist/Index.html',template)
+                writeToFile('./dist/Index.html',template)
         }
     })
 }
